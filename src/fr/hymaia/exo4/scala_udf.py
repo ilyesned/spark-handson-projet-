@@ -21,6 +21,9 @@ def main():
     # Utilisation de l'UDF Scala pour ajouter la colonne category_name
     dfWithCategoryName = sellDF.withColumn("category_name", addCategoryName(col("category")))
 
+    # Ecriture du résultat au format CSV
+    dfWithCategoryName.write.mode("overwrite").csv("data/exo4/scala_udf", header=True)
+
     # N'oubliez pas d'arrêter la session Spark à la fin
     spark.stop()
 

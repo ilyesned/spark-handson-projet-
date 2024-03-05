@@ -21,6 +21,8 @@ def main():
     # Ajout de la colonne category_name en utilisant l'UDF
     df_sell_category_name = df_sell.withColumn("category_name", categoriser_udf(df_sell["category"]))
 
+    # Ecriture du résultat au format CSV
+    df_sell_category_name.write.mode("overwrite").csv("data/exo4/python_udf", header=True)
 
 # Définition de la fonction UDF Python
 def categoriser(category):
